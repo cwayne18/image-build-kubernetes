@@ -59,13 +59,13 @@ ARG TARGETARCH
 ARG K3S_ROOT_VERSION=v0.15.0
 ADD https://github.com/k3s-io/k3s-root/releases/download/${K3S_ROOT_VERSION}/k3s-root-${TARGETARCH}.tar /opt/k3s-root/k3s-root.tar
 RUN mkdir -p /opt/k3s-root/bin /opt/k3s-root/usr/sbin && \
-    tar xvf /opt/k3s-root/k3s-root.tar -C /opt/k3s-root/bin --strip-components=2 \
+    tar xf /opt/k3s-root/k3s-root.tar -C /opt/k3s-root/bin --strip-components=2 \
         './bin/awk' \
         './bin/busybox' \
         './bin/conntrack' \
         './bin/ipset' \
         './bin/which' && \
-    tar xvf /opt/k3s-root/k3s-root.tar -C /opt/k3s-root/usr/sbin --wildcards --strip-components=3 \
+    tar xf /opt/k3s-root/k3s-root.tar -C /opt/k3s-root/usr/sbin --wildcards --strip-components=3 \
         './bin/aux/*tables*' \
         './bin/aux/nft' && \
     ln -sf /bin/busybox /opt/k3s-root/usr/sbin/modprobe && \
